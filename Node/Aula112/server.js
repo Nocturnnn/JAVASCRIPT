@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+
+
 const mongoose = require('mongoose');
-
-
 mongoose.connect(process.env.CONNECTIONSTRING)
     .then(() => {
         app.emit('pronto');
@@ -20,11 +20,13 @@ const helmet = require('helmet');
 const csrf = require('csurf');
 const {middlewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware');
 
+app.use(helmet());
 
 app.use(
     express.urlencoded(
         {extended: true}
 ));
+app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 
@@ -39,7 +41,7 @@ const sessionOptions = session({
     }
 });
 
-app.use(helmet());
+
 app.use(sessionOptions);
 app.use(flash());
 
@@ -47,8 +49,8 @@ app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
 
-// Nossos próprios middlewares
 app.use(csrf());
+// Nossos próprios middlewares
 app.use(middlewareGlobal);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
