@@ -1,0 +1,43 @@
+<%- include('./includes/head.ejs') %>
+
+<%- include ('./includes/nav.ejs') %>
+
+<div class="container-fluid my-5">
+  <div class="col-lg-8 px-0 m-auto">
+        <h1 class="text-center fw-semibold">Login</h1>
+        <p class="text-center">Faça login ou crie sua conta 
+        <a 
+        class="links hover-effect"
+        href="/cadastrar">
+        aqui
+        </a>
+        </p>
+
+
+        <form class="row row-cols-lg-auto g-3 align-items-center" action="/login/logar" method="post">
+            <input type="hidden" name="_csrf" value=<%= csrfToken %> 
+            >
+            <div class="col-12">
+            <label class="visually-hidden" for="inlineFormInputGroupUsername">Login</label>
+            <div class="input-group">
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Login"
+            name="email">
+            </div>
+            </div>
+      
+            <div class="col-12">
+            <label class="visually-hidden" for="inlineFormSelectPref">Password</label>
+            <input type="password" class="form-control"
+            id="inlineFormInputGroupUsername"
+            placeholder="Senha"
+            name="senha">
+            </div>
+        
+            <div class="col-12">
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+            </div>
+        </form>
+  </div>
+</div>
+
+<%- include ('./includes/footer.ejs') %>
