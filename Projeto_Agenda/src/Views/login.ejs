@@ -5,16 +5,16 @@
 <div class="container-fluid my-5">
   <div class="col-lg-8 px-0 m-auto">
         <h1 class="text-center fw-semibold">Login</h1>
-        <p class="text-center">Faça login ou crie sua conta 
+        <p class="text-center mb-5">Faça login e entre em sua conta ou <br> crie sua conta 
         <a 
         class="links hover-effect"
         href="/cadastrar">
-        aqui
+        Clique aqui!
         </a>
         </p>
 
 
-        <form class="row row-cols-lg-auto g-3 align-items-center" action="/login/logar" method="post">
+        <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/login/logar" method="post">
             <input type="hidden" name="_csrf" value=<%= csrfToken %> 
             >
             <div class="col-12">
@@ -30,7 +30,7 @@
             <input type="password" class="form-control"
             id="inlineFormInputGroupUsername"
             placeholder="Senha"
-            name="senha">
+            name="password">
             </div>
         
             <div class="col-12">

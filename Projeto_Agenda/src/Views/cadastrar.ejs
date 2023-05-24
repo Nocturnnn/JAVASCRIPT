@@ -5,8 +5,11 @@
 <div class="container-fluid my-5">
   <div class="col-lg-8 px-0 m-auto">
         <h1 class="text-center fw-semibold">Criar Conta</h1>
-        <p class="text-center">crie sua conta abaixo ou <br> se já possuir uma conta <a class="links hover-effect" href="/login">Clique aqui!</a></p>
-        <form class="row row-cols-lg-auto g-3 align-items-center" action="/login/register" method="POST">
+        <p class="text-center mb-5 ">crie sua conta abaixo ou <br> se já possuir uma conta <a class="links hover-effect" href="/login">Clique aqui!</a></p>
+
+        <%- include('includes/messages') %>
+
+        <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/login/register" method="POST">
           <input type="hidden" name="_csrf" value=<%= csrfToken %> 
             >
             <div class="col-12">
@@ -19,15 +22,14 @@
             <div class="col-12">
             <label class="visually-hidden" for="inlineFormSelectPref">Password</label>
             <input type="password" class="form-control"
-            id="inlineFormInputGroupUsername" name="senha"
+            name="password"
             placeholder="Senha">
             </div>
 
             <div class="col-12">
               <label class="visually-hidden" for="inlineFormSelectPref">Password Repeat</label>
               <input type="password" class="form-control"
-              name="repetir-senha"
-              id="inlineFormInputGroupUsername"
+              name="passwordConfirm"
               placeholder="Repetir Senha">
               </div>
         
