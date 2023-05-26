@@ -11,7 +11,13 @@
         <%- include('includes/messages') %>
 
 
-        <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/contato/register" method="post">
+        <% if(contato._id) { %>
+          <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/contato/edit/<%= contato._id%>" method="post">
+        <%} else { %>
+          <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/contato/register" method="post">
+        <% } %>
+
+        
             <input type="hidden" name="_csrf" value=<%= csrfToken %> 
             >
 
