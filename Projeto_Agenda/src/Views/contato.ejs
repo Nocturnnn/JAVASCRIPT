@@ -5,8 +5,14 @@
 <div class="container-fluid my-5">
   <div class="col-lg-8 px-0 m-auto">
         <h1 class="text-center fw-semibold">Contatos</h1>
-        <p class="text-center mb-5">Crie os ou edite seus contatos ou veja eles <br> <a class="links hover-effect" href="/">Clicando aqui</a>
-        </p>
+        <% if(contato._id) { %>
+          <p class="text-center mb-5">Edite seus contatos ou <br> veja eles <a class="links hover-effect" href="/">Clicando aqui</a>
+          </p>
+        
+        <%} else { %>
+          <p class="text-center mb-5">Crie os seus contatos ou <br> veja eles <a class="links hover-effect" href="/">Clicando aqui</a>
+          </p>
+        <% } %>
 
         <%- include('includes/messages') %>
 
