@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public', 'assets', 'js'),
     filename: 'bundle.js'
   },
+  watch: true,
   module: {
     rules: [{
       exclude: /node_modules/,

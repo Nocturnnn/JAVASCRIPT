@@ -15,12 +15,13 @@
         <% } %>
 
         <%- include('includes/messages') %>
+        <div class="col-lg-8 px-0 errors mb-5"></div>
 
 
         <% if(contato._id) { %>
-          <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/contato/edit/<%= contato._id%>" method="post">
+          <form class="row row-cols-lg-auto g-3 align-items-center d-block form-contato" action="/contato/edit/<%= contato._id%>" method="post">
         <%} else { %>
-          <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/contato/register" method="post">
+          <form class="row row-cols-lg-auto g-3 align-items-center d-block form-contato" action="/contato/register" method="post">
         <% } %>
 
         
@@ -30,7 +31,8 @@
             <div class="col-8">
               <label class="visually-hidden" for="inlineFormInputGroupUsername">Nome</label>
               <div class="input-group">
-              <input type="text" class="form-control" id="inlineFormInputGroupUsername"placeholder="Nome"
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+              placeholder="Nome"
               name="nome"
               value="<%= contato.nome %>"
 

@@ -15,14 +15,16 @@
 
         <%- include('includes/messages') %>
 
+        <div class="col-lg-8 px-0 errors mb-5"></div>
 
-        <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/login/logar" method="post">
+
+        <form class="row row-cols-lg-auto g-3 align-items-center d-block form-login" action="/login/logar" method="post">
             <input type="hidden" name="_csrf" value=<%= csrfToken %> 
             >
             <div class="col-12">
             <label class="visually-hidden" for="inlineFormInputGroupUsername">Login</label>
             <div class="input-group">
-            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Login"
+            <input type="text" class="form-control"  placeholder="Login"
             name="email">
             </div>
             </div>
@@ -30,7 +32,6 @@
             <div class="col-12">
             <label class="visually-hidden" for="inlineFormSelectPref">Password</label>
             <input type="password" class="form-control"
-            id="inlineFormInputGroupUsername"
             placeholder="Senha"
             name="password">
             </div>

@@ -9,7 +9,9 @@
 
         <%- include('includes/messages') %>
 
-        <form class="row row-cols-lg-auto g-3 align-items-center d-block" action="/login/register" method="POST">
+        <div class="col-lg-8 px-0 errors mb-5"></div>
+
+        <form class="row row-cols-lg-auto g-3 align-items-center d-block form-cadastro" action="/login/register" method="POST">
           <input type="hidden" name="_csrf" value=<%= csrfToken %> 
             >
             <div class="col-12">
@@ -32,8 +34,7 @@
               name="passwordConfirm"
               placeholder="Repetir Senha">
               </div>
-        
-
+      
         
             <div class="col-12">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
