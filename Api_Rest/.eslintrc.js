@@ -13,5 +13,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'import/first': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-param-reassign': 'off',
   },
 };
