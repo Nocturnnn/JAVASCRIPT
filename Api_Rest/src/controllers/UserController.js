@@ -17,6 +17,8 @@ class UserController {
     try {
       const users = await User.findAll();
       res.json(users);
+      console.log('User ID', req.user.id);
+      console.log('User email', req.user.email);
     } catch (err) {
       res.status(400).json({
         errors: err.errors.map((error) => error.message),
