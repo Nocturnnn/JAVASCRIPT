@@ -1,9 +1,15 @@
 import Aluno from '../models/Aluno';
+import Upload from '../models/Upload';
 
 class AlunoController {
   async index(req, res) {
     const alunos = await Aluno.findAll({
       attributes: ['id', 'nome', 'sobrenome', 'email', 'peso', 'idade', 'altura'],
+      order: [['id', 'DESC'], [Upload, 'id', 'DESC']],
+      include: {
+        model: Upload,
+        attributes: ['filename', 'id'],
+      },
     });
     res.json(alunos);
   }
@@ -27,19 +33,20 @@ class AlunoController {
       if (!req.params.id) {
         return res.status(404).json({ error: 'ID não informado' });
       }
-      const aluno = await Aluno.findByPk(req.params.id);
+      const aluno = await Aluno.findByPk(req.params.id, {
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'peso', 'idade', 'altura'],
+        order: [[Upload, 'id', 'DESC']],
+        include: {
+          model: Upload,
+          attributes: ['filename', 'id'],
+        },
+      });
 
       if (!aluno) {
         return res.status(404).json({ error: 'Aluno não encontrado' });
       }
 
-      const {
-        id, nome, sobrenome, email, idade, peso, altura,
-      } = aluno;
-
-      res.json({
-        id, nome, sobrenome, email, idade, peso, altura,
-      });
+      res.json(aluno);
     } catch (err) {
       res.status(500).json({ error: err.errors.map((e) => e.message) });
     }

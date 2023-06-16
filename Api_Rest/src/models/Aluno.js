@@ -67,4 +67,10 @@ export default class Aluno extends Model {
     });
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Upload, {
+      foreignKey: 'aluno_id',
+    });
+  }
 }

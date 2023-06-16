@@ -12,12 +12,18 @@ class UploadController {
         return res.status(400).json({ errors: [err.code] });
       }
 
-      const { originalname, filename } = req.file;
-      const { aluno_id } = req.body;
+      try {
+        const { originalname, filename } = req.file;
+        const { aluno_id } = req.body;
 
-      const foto = await Upload.create({ originalname, filename, aluno_id });
+        const foto = await Upload.create({ originalname, filename, aluno_id });
 
-      return res.json(foto);
+        return res.json(foto);
+      } catch (e) {
+        return res.status(400).json({
+          errors: ['Aluno não existe'],
+        });
+      }
     });
   }
 }
