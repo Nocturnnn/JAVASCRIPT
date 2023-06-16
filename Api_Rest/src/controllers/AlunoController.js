@@ -8,7 +8,7 @@ class AlunoController {
       order: [['id', 'DESC'], [Upload, 'id', 'DESC']],
       include: {
         model: Upload,
-        attributes: ['filename', 'id'],
+        attributes: ['filename', 'id', 'url'],
       },
     });
     res.json(alunos);
@@ -38,7 +38,7 @@ class AlunoController {
         order: [[Upload, 'id', 'DESC']],
         include: {
           model: Upload,
-          attributes: ['filename', 'id'],
+          attributes: ['filename', 'id', 'url'],
         },
       });
 
