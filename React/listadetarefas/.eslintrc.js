@@ -31,5 +31,6 @@ module.exports = {
     'comma-dangle': 0,
     'no-multiple-empty-lines': 0,
     'react/jsx-no-useless-fragment': 0,
+    'import/no-extraneous-dependencies': 'off',
   },
 };
