@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 
-//  Form
-import { FaEdit, FaWindowClose } from "react-icons/fa";
-
-//  Lista de tarefas
-// import { FaEdit, FaWindowClose } from 'react-icons/fa';
-
 import Form from './Form';
 import "./main.css";
+import Tarefas from "./Tarefas";
 
 export default class Main extends Component {
   state = {
@@ -57,6 +52,7 @@ export default class Main extends Component {
       this.setState({
         tarefas: [...novasTarefas],
         index: -1,
+        novaTarefa: "",
       });
     }
   };
@@ -76,6 +72,7 @@ export default class Main extends Component {
 
     this.setState({
       tarefas: [...novasTarefas],
+      novaTarefa: "",
     });
   };
 
@@ -88,26 +85,16 @@ export default class Main extends Component {
         <Form
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
-          novaTarefa={this.novaTarefa}
+          novaTarefa={novaTarefa}
         />
 
-        <ul className="tarefas">
-          {tarefas.map((tarefa, index) => (
-            <li key={tarefa}>
-              {tarefa}
-              <span>
-                <FaEdit
-                  className="edit"
-                  onClick={(e) => this.handleEdit(e, index)}
-                />
-                <FaWindowClose
-                  className="delete"
-                  onClick={(e) => this.handleDelete(e, index)}
-                />
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Tarefas
+          handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+          tarefas={tarefas}
+        />
+
+
       </div>
     );
   }
