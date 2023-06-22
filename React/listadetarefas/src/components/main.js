@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 
 //  Form
-import { FaPlus, FaEdit, FaWindowClose } from "react-icons/fa";
+import { FaEdit, FaWindowClose } from "react-icons/fa";
 
 //  Lista de tarefas
 // import { FaEdit, FaWindowClose } from 'react-icons/fa';
 
+import Form from './Form';
 import "./main.css";
 
 export default class Main extends Component {
@@ -14,6 +15,22 @@ export default class Main extends Component {
     tarefas: [],
     index: -1,
   };
+
+  componentDidMount() {
+    const tarefas = JSON.parse(localStorage.getItem("tarefas"));
+
+    if (!tarefas) return;
+
+    this.setState({ tarefas });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tarefas } = this.state;
+
+    if (tarefas === prevState.tarefas) return;
+
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+  }
 
   handleChange = (e) => {
     this.setState({ novaTarefa: e.target.value });
@@ -32,7 +49,7 @@ export default class Main extends Component {
     if (index === -1) {
       this.setState({
         tarefas: [...novasTarefas, novaTarefa],
-        novaTarefa: '',
+        novaTarefa: "",
       });
     } else {
       novasTarefas[index] = novaTarefa;
@@ -68,21 +85,11 @@ export default class Main extends Component {
       <div className="main">
         <h1>Lista de tarefas</h1>
 
-        <form
-          action="#"
-          className="form"
-          onSubmit={this.handleSubmit}
-        >
-          <input
-            value={novaTarefa}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="Adicione uma nova tarefa"
-          />
-          <button type="submit">
-            <FaPlus />
-          </button>
-        </form>
+        <Form
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          novaTarefa={this.novaTarefa}
+        />
 
         <ul className="tarefas">
           {tarefas.map((tarefa, index) => (
