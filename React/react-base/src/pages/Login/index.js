@@ -13,6 +13,7 @@ export default function Login() {
         Tenetur vel voluptates iste magnam suscipit doloribus dolorum a harum? Tenetur fuga vel ad
         nam placeat inventore aspernatur?
       </Paragraph>
+      <button type="button">Login</button>
     </Container>
   );
 }
