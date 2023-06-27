@@ -10,8 +10,8 @@ export default createGlobalStyle`
   }
   body {
     font-family: 'Roboto', sans-serif;
-    background: ${primaryDarkColor};
-    color: ${primaryColor};
+    background: ${primaryColor};
+    color: ${primaryDarkColor};
   }
   html, body, #root {
     height: 100%;
