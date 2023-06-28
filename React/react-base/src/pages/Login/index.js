@@ -1,7 +1,12 @@
+import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
 import { Title, Paragraph } from './styled';
 
 export default function Login() {
+  toast.success('Oie');
+  toast.error('Error');
+  toast.warning('Warning');
+  toast.info('Info');
   return (
     <Container>
       <Title isRed>
