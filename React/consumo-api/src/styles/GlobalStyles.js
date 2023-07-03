@@ -51,7 +51,7 @@ export default createGlobalStyle`
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 600px;
   background: #fff;
   margin: 50px auto;
   padding: 20px;
