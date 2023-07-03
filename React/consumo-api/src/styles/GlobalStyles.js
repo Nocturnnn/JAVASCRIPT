@@ -19,12 +19,17 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
-    background: ${colors.primaryColor};
+    background: ${colors.primaryDarkColor};
     border: none;
     color: #fff;
     padding: 10px 20px;
     border-radius: 4px;
     font-weight: bold;
+    transition: filter 0.3s;
+  }
+  button:hover {
+    filter: brightness(120%);
+    opacity: 0.8;
   }
   a {
     text-decoration: none;

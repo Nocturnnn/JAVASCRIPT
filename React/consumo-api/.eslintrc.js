@@ -29,5 +29,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'no-unused-vars': 'warn',
+    'react/jsx-no-bind': 0,
   },
 };
