@@ -1,10 +1,54 @@
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { isEmail } from 'validator';
+import { useDispatch } from 'react-redux';
 import { Container } from '../../styles/GlobalStyles';
-import { Title } from './styled';
+import * as Styled from './styled';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  function handleSubmit(e) {
+    let formErrors = false;
+    e.preventDefault();
+    if (password.length < 6 || password.length > 50) {
+      formErrors = true;
+      toast.error('Senha inválida');
+    }
+    if (!isEmail(email)) {
+      formErrors = true;
+      toast.error('E-mail inválido');
+    }
+
+    if (formErrors) return;
+    dispatch(actions.LoginRequest({ email, password }));
+  }
   return (
     <Container>
-      <Title>Login</Title>
+      <Styled.Title>Login</Styled.Title>
+      <Styled.Form onSubmit={handleSubmit}>
+        <label htmlFor="email">
+          Email:
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Coloque seu e-mail cadastrado aqui"
+          />
+        </label>
+        <label htmlFor="password">
+          Senha:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Coloque sua senha cadastrada aqui"
+          />
+        </label>
+        <button type="submit">Entrar</button>
+      </Styled.Form>
     </Container>
   );
 }
