@@ -20,6 +20,10 @@ function* loginRequest({ payload }) {
     yield put(actions.LoginFailure());
   }
 }
+
+function registerRequest({ payload }) {
+  console.log(payload);
+}
 function persistRehydrate({ payload }) {
   const token = get(payload, 'auth.token', '');
   if (!token) return;
@@ -29,4 +33,5 @@ function persistRehydrate({ payload }) {
 export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
   takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
+  takeLatest(types.REGISTER_REQUEST, registerRequest),
 ]);
