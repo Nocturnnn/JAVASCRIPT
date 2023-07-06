@@ -9,9 +9,9 @@ import * as Styled from './styled';
 import Loading from '../../components/Loading';
 
 export default function Register() {
-  const id = useSelector((state) => state.auth.user);
-  const nomeStored = useSelector((state) => state.auth.nome);
-  const emailStored = useSelector((state) => state.auth.email);
+  const id = useSelector((state) => state.auth.user.id);
+  const nomeStored = useSelector((state) => state.auth.user.nome);
+  const emailStored = useSelector((state) => state.auth.user.email);
   const isLoading = useSelector((state) => state.auth.isLoading);
 
   const dispatch = useDispatch();

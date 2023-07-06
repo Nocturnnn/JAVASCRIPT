@@ -24,3 +24,21 @@ export function RegisterRequest(payload) {
     payload,
   };
 }
+export function RegisterFailure(payload) {
+  return {
+    type: types.REGISTER_FAILURE,
+    payload,
+  };
+}
+export function RegisterCreatedSuccess(payload) {
+  return {
+    type: types.REGISTER_CREATED_SUCCESS,
+    payload,
+  };
+}
+export function RegisterUpdatedSuccess(payload) {
+  return {
+    type: types.REGISTER_UPDATED_SUCCESS,
+    payload,
+  };
+}
