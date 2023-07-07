@@ -3,11 +3,14 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { isEmail, isInt, isFloat } from 'validator';
+import { useDispatch } from 'react-redux';
+
 import axios from '../../services/axios';
 import history from '../../services/history';
 import Loading from '../../components/Loading';
 import { Container } from '../../styles/GlobalStyles';
 import * as Styled from './styled';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Aluno({ match }) {
   const id = get(match, 'params.id', 0);
@@ -18,6 +21,8 @@ export default function Aluno({ match }) {
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id) return;
@@ -45,26 +50,80 @@ export default function Aluno({ match }) {
     getData();
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    let formErrors = false;
 
     if (nome.length < 3 || nome.length > 255) {
       toast.error('Nome deve ter entre 3 e 255 caracteres');
+      formErrors = true;
     }
     if (sobrenome.length < 3 || sobrenome.length > 255) {
       toast.error('Sobrenome deve ter entre 3 e 255 caracteres');
+      formErrors = true;
     }
     if (!isEmail(email)) {
       toast.error('E-mail inválido');
+      formErrors = true;
     }
     if (idade.length > 0 && idade.length < 150 && !isInt(idade)) {
       toast.error('Idade inválida');
+      formErrors = true;
     }
-    if (!isFloat(peso) || !isInt(peso)) {
+    if (!isFloat(String(peso))) {
       toast.error('Peso precisa ser um número');
+      formErrors = true;
     }
-    if (!isFloat(altura) || !isInt(altura)) {
+    if (!isFloat(String(altura))) {
       toast.error('Altura precisa ser um número');
+      formErrors = true;
+    }
+
+    if (formErrors) return;
+
+    try {
+      setIsLoading(true);
+      if (id) {
+        await axios.put(`/alunos/${id}`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+
+        toast.success('Aluno(a) atualizado com sucesso.');
+      } else {
+        const { data } = await axios.post('/alunos', {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+
+        toast.success('Aluno(a) criado com sucesso.');
+        history.push(`/aluno/${data.id}/edit`);
+      }
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      const status = get(err, 'response.status', 0);
+      const data = get(err, 'response.data', {});
+      const errors = get(data, 'errors', []);
+
+      if (errors.length > 0) {
+        errors.map((error) => toast.error(error));
+      } else {
+        toast.error('Erro desconhecido');
+      }
+      if (status === 401) {
+        dispatch(actions.LoginFailure());
+        toast.info('Você precisa fazer login novamente.');
+        history.push('/login');
+      }
     }
   };
 
