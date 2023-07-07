@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { FaUserCircle, FaEdit, FaTrash, FaExclamation } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+
 import axios from '../../services/axios';
 import { Container } from '../../styles/GlobalStyles';
 import * as Styled from './styled';
@@ -52,6 +53,7 @@ export default function Alunos() {
     <Container>
       <Loading isLoading={isLoading} />
       <Styled.Title>Alunos</Styled.Title>
+      <Styled.NewStudent to="/aluno">Criar Aluno</Styled.NewStudent>
       <Styled.AlunoContainer>
         {alunos.map((aluno, index) => (
           <div key={String(aluno.id)}>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Title = styled.h1`
   font-size: 30px;
@@ -26,6 +27,11 @@ export const ProfilePicture = styled.div`
     height: 36px;
     border-radius: 50%;
   }
+`;
+export const NewStudent = styled(Link)`
+  display: block;
+  padding: 20px 0 10px 0;
+  color: green;
 `;
 export const Paragraph = styled.p`
   font-size: 25px;
