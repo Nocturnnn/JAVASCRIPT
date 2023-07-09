@@ -27,3 +27,11 @@ export const Form = styled.form`
     }
   }
 `;
+export const DeleteBtn = styled.button`
+  margin: 30px auto;
+  background: red;
+  color: ${colors.errorColor};
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+`;

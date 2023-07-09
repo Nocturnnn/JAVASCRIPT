@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaExclamation } from 'react-icons/fa';
+import { get } from 'lodash';
 
+import axios from '../../services/axios';
+import history from '../../services/history';
 import * as actions from '../../store/modules/auth/actions';
 import { Container } from '../../styles/GlobalStyles';
 import * as Styled from './styled';
@@ -19,6 +23,7 @@ export default function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [deletar, setDeletar] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -45,6 +50,29 @@ export default function Register() {
 
     dispatch(actions.RegisterRequest({ nome, email, password, id }));
   }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/users/`);
+      dispatch(actions.LoginFailure());
+      toast.success('Usuário deletado com sucesso.');
+      history.push('/');
+    } catch (err) {
+      const status = get(err, 'response.status', []);
+      if (status === 401) {
+        toast.error('Você precisa fazer login');
+        history.push('/login');
+      } else {
+        toast.error('Ocorreu um erro ao excluir aluno');
+      }
+    }
+  };
+  const handleCheckDelete = (e) => {
+    e.preventDefault();
+    if (deletar) return handleDelete();
+    setDeletar(true);
+    return toast.warning('Ao clicar novamente esse aluno será excluído, tem certeza?');
+  };
   return (
     <Container>
       <Loading isLoading={isLoading} />
@@ -77,6 +105,14 @@ export default function Register() {
             placeholder="Digite sua senha"
           />
         </label>
+
+        {id ? (
+          <Styled.DeleteBtn onClick={handleCheckDelete}>
+            {deletar ? <FaExclamation size={16} /> : 'Deletar Usuário'}
+          </Styled.DeleteBtn>
+        ) : (
+          <> </>
+        )}
 
         <button type="submit">{id ? 'Salvar' : 'Cadastrar'}</button>
       </Styled.Form>
