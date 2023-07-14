@@ -11,9 +11,12 @@ const arquivos = [
     "imagem_fundo.jpeg",
     "codigo_fonte.py",
     "planilha_vendas.xlsx",
-]
+];
+
+const html = '<p> Ola mundo </p> <p> Ola again </p>';
 
 module.exports = {
     texto,
-    arquivos
+    arquivos,
+    html
 }
