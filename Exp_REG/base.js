@@ -15,8 +15,11 @@ const arquivos = [
 
 const html = '<p> Ola mundo </p> <p> Ola again </p>';
 
+const alfabeto = `AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 _-/';,.*@#$%^&+= atenção`;
+
 module.exports = {
     texto,
     arquivos,
-    html
+    html,
+    alfabeto
 }
