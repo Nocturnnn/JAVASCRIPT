@@ -17,9 +17,32 @@ const html = '<p> Ola mundo </p> <p> Ola again </p>';
 
 const alfabeto = `AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 _-/';,.*@#$%^&+= atenção`;
 
+const cpfs =`
+  Os Cpfs são:
+  111.111.111-11
+  254.224.877-25
+  215.978.456-12
+  047.258.369-96
+  963.987.321.00
+`;
+
+const ips = `
+  Os IPs são:
+  0.0.0.0
+
+  192.168.0.25
+  192.168.0.1
+  10.10.5.12
+  180.12.0.50
+
+  255.255.255.255
+`;
+
 module.exports = {
     texto,
     arquivos,
     html,
-    alfabeto
+    alfabeto,
+    cpfs,
+    ips
 }
