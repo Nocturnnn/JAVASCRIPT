@@ -26,6 +26,12 @@ const cpfs =`
   963.987.321.00
 `;
 
+const cpfs2 =`254.224.877-45
+215.978.456-12
+047.258.369-96
+963.987.32a.00
+`;
+
 const ips = `
   Os IPs são:
   0.0.0.0
@@ -44,5 +50,6 @@ module.exports = {
     html,
     alfabeto,
     cpfs,
+    cpfs2,
     ips
 }
