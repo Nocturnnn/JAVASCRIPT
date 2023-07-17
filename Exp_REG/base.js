@@ -14,6 +14,12 @@ const arquivos = [
 ];
 
 const html = '<p> Ola mundo </p> <p> Ola again </p>';
+const html2 = `<p> Ola mundo </p>
+<p
+class="teste"
+data-test='teste'>
+Ola mundo</p>
+<div> Sou a div </div>`;
 
 const alfabeto = `AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 _-/';,.*@#$%^&+= atenção`;
 
@@ -48,6 +54,7 @@ module.exports = {
     texto,
     arquivos,
     html,
+    html2,
     alfabeto,
     cpfs,
     cpfs2,
